@@ -1,0 +1,30 @@
+sudo apt update
+sudo apt upgrade
+sudo apt install openjdk-11-jdk -y
+wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
+tar -xvzf apache-jmeter-5.6.3.tgz
+mv apache-jmeter-5.6.3 apache-jmeter
+export JMETER_HOME=/home/ubuntu/apache-jmeter
+export PATH=$JMETER_HOME/bin:$PATH
+sudo vi ~/.bashrc (copy line 7 & 8 into ~/.bashrc)
+source ~/.bashrc 
+jmeter -n -t /home/ubuntu/request.jmx -l /home/ubuntu/results.jtl
+nohup jmeter -n -t /home/ubuntu/request.jmx -l /home/ubuntu/results.jtl > jmeter.log 2>&1 &
+
+jmeter -g /home/ubuntu/results.jtl -o /home/ubuntu/html-report
+jmeter -g /home/ubuntu/results.jtl -o /home/ubuntu/html-report
+jmeter -g /home/ubuntu/results.jtl -o "/home/ubuntu/html-report"
+
+nohup jmeter -n -t request.jmx -l results.jtl > jmeter.log 2>&1 &
+nohup jmeter -n -t request.jmx -l results.jtl > jmeter.log 2>&1 &
+echo $JMETER_PID
+nohup jmeter -n -t request.jmx -l results.jtl > jmeter.log 2>&1 &
+pgrep -f "jmeter -n -t request.jmx -l results.jtl"
+nohup jmeter -n -t request.jmx -l results.jtl > jmeter.log 2>&1 &
+nohup jmeter -n -t request.jmx -l results.jtl > jmeter.log 2>&1 &
+ps
+jmeter -g results.jtl -e -o html/
+jmeter -g results.jtl -o html-report/
+nohup jmeter -n -t request.jmx -l results.jtl > jmeter.log 2>&1 &
+jmeter -g results.jtl -o html-report/
+

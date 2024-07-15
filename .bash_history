@@ -6,7 +6,7 @@ tar -xvzf apache-jmeter-5.6.3.tgz
 mv apache-jmeter-5.6.3 apache-jmeter
 export JMETER_HOME=/home/ubuntu/apache-jmeter
 export PATH=$JMETER_HOME/bin:$PATH
-sudo vi ~/.bashrc
+sudo vi ~/.bashrc 
 source ~/.bashrc 
 scp -i "minikube.pem" /Users/taiwo/Documents/Post.jmx ubuntu@ec2-54-211-167-201.compute-1.amazonaws.com:/home/ubuntu/
 jmeter -n -t /home/ubuntu/Post.jmx -l /home/ubuntu/results.jtl
