@@ -1,0 +1,13 @@
+.cache/*
+.java/*
+.ssh/*
+.vscode-server/*
+.bash_logout
+.bashrc
+.lesshst
+.profile
+.sudo_as_admin_successful
+.viminfo
+.wget-hsts
+apache-jmeter/*
+apache-jmeter-5.6.3.tgz
