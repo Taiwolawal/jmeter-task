@@ -1,0 +1,13 @@
+sudo apt update
+sudo apt install openjdk-11-jdk -y
+wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz
+tar -xvzf apache-jmeter-5.6.3.tgz
+mv apache-jmeter-5.6.3 apache-jmeter
+export JMETER_HOME=/home/ubuntu/apache-jmeter
+export PATH=$JMETER_HOME/bin:$PATH
+sudo vi ~/.bashrc # Copy line 6 & 7 in .bashrc
+source ~/.bashrc
+sudo apt  install awscli -y
+
+# Copying HTML folder to your laptop
+scp -i "<pem-file>" -r ubuntu@ec2-34-245-225-23.eu-west-1.compute.amazonaws.com:/home/ubuntu/jmeter-html-20-07-2024T20:53:58 <Path-on-your-laptop>
