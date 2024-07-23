@@ -129,9 +129,6 @@ done
 
 echo "JMX file has been updated successfully."
 
-update_xml_value "<ResultCollector guiclass=\"SummaryReport\" testclass=\"ResultCollector\" testname=\"Summary Report\">\n    <stringProp name=\"filename\">.*</stringProp>" \
-                 "<ResultCollector guiclass=\"SummaryReport\" testclass=\"ResultCollector\" testname=\"Summary Report\">\n    <stringProp name=\"filename\">${result_file}</stringProp>" \
-                 "$jmx_file"
 
 # Run JMeter test in the background
 jmeter -n -t "$jmx_file" -l "$result_file" > "$jmeter_log_file" 2>&1 &
