@@ -22,27 +22,14 @@ jmeter_log_file="/home/ubuntu/jmeter.log"
 html_log_file="/home/ubuntu/html.log"
 s3_log_file="/home/ubuntu/s3.log"
 
+# Line to update CSV path
+csv_line=116
+
 # HTML file name
 html_file="jmeter-html-${current_time}"
 
 # Create the directory
 mkdir "$html_file"
-
-# Function to update XML values using sed
-update_xml_value() {
-    local search="$1"
-    local replace="$2"
-    local file="$3"
-    # sed -i "" "s#${search}#${replace}#g" "$file"
-
-    # Detect OS and use appropriate sed -i option
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i "" "s#${search}#${replace}#g" "$file"
-    else
-        sed -i "s#${search}#${replace}#g" "$file"
-    fi
-
-}
 
 # Ask for the type of test in a loop until valid input is provided
 while true; do
@@ -62,10 +49,38 @@ else
     csv_file="$post_csv"
 fi
 
-# Update the CSV file path in the JMX file
-update_xml_value "<CSVDataSet guiclass=\"TestBeanGUI\" testclass=\"CSVDataSet\" testname=\"CSV Request Data\">\n    <stringProp name=\"filename\">.*</stringProp>" \
-                 "<CSVDataSet guiclass=\"TestBeanGUI\" testclass=\"CSVDataSet\" testname=\"CSV Request Data\">\n    <stringProp name=\"filename\">${csv_file}</stringProp>" \
-                 "$jmx_file"
+# Function to update csv path in the csv line
+update_csv_path() {
+    local line_number="$1"
+    local replace="$2"
+    local file="$3"
+    local indent="          "
+
+   # Detect OS and use appropriate sed -i option
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i "" "${line_number}s#.*#${indent}${replace}#" "$file"
+    else
+        sed -i "${line_number}s#.*#${indent}${replace}#" "$file"
+    fi
+}
+
+update_csv_path "$csv_line" "<stringProp name=\"filename\">${csv_file_path}</stringProp>" "$jmx_file"
+
+# Function to update XML values using sed
+update_xml_value() {
+    local search="$1"
+    local replace="$2"
+    local file="$3"
+    # sed -i "" "s#${search}#${replace}#g" "$file"
+
+    # Detect OS and use appropriate sed -i option
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i "" "s#${search}#${replace}#g" "$file"
+    else
+        sed -i "s#${search}#${replace}#g" "$file"
+    fi
+
+}
 
 # Ask for the number of threads
 while true; do
